@@ -1,0 +1,9 @@
+<h1>Список автомобилей</h1>
+
+{% for car in cars %}
+    <h2>{{ car.title }}</h2>
+    <img src="{{ car.image.url }}" width="200">
+    <p>Цена: {{ car.price }}</p>
+    <a href="{% url 'car_detail' car.id %}">Подробнее</a>
+    <hr>
+{% endfor %}
