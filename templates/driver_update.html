@@ -1,0 +1,10 @@
+<h2>Изменить водителя</h2>
+<hr>
+<hr>
+<hr>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Сохранить</button>
+</form>

@@ -15,7 +15,7 @@ def create_driver(request):
 
 
 
-def drivers_list(request):
+def driver_list(request):
     drivers = DriverModel.objects.all()
     return render(request, 'drivers_list.html', {'drivers': drivers})
 
@@ -26,7 +26,7 @@ def update_driver(request, id):
         form = DriverForm(request.POST, request.FILES, instance=driver)
         if form.is_valid():
             form.save()
-            return redirect('drivers_list')
+            return redirect('driver_list')
     else:
         form = DriverForm(instance=driver)
 
