@@ -10,6 +10,8 @@ urlpatterns = [
     path('', include('cars_of_facts.urls')),
     path('', include('myShop.urls')),
     path('drivers/', include('drivers.urls')),
+    path('vacancy/', include('vacancy.urls')),
+    path('captcha/', include('captcha.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

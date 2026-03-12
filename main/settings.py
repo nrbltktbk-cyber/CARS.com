@@ -29,6 +29,9 @@ INSTALLED_APPS = [
     'tourism',
     'myShop',
     'drivers',
+    'vacancy',
+    'captcha',
+    
 ]
 
 MIDDLEWARE = [

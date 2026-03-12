@@ -1,0 +1,7 @@
+<h2>Список кандидатов</h2>
+
+{% for candidate in candidates %}
+<p>
+{{ candidate.full_name }} - {{ candidate.position }}
+</p>
+{% endfor %}
