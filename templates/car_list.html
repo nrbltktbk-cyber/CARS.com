@@ -1,0 +1,21 @@
+<form method="get">
+    <input type="text" name="q" value="{{ query }}" placeholder="Поиск машины">
+    <button type="submit">Поиск</button>
+</form>
+{% for car in page_obj %}
+<p>
+<a href="{% url 'car_detail' car.id %}">
+{{ car.name }}
+</a>
+</p>
+{% endfor %}
+
+{% if page_obj.has_previous %}
+<a href="?page={{ page_obj.previous_page_number }}">Назад</a>
+{% endif %}
+
+<span>{{ page_obj.number }}</span>
+
+{% if page_obj.has_next %}
+<a href="?page={{ page_obj.next_page_number }}">Вперед</a>
+{% endif %}

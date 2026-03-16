@@ -1,6 +1,8 @@
 from django.db import models
 
 class Car(models.Model):
+    name = models.CharField(max_length=100)
+    views = models.IntegerField(default=0)
     title = models.CharField(max_length=100)
     brand = models.CharField(max_length=100)
     year = models.IntegerField()
