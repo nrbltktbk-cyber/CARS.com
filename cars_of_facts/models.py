@@ -16,3 +16,7 @@ class Car(models.Model):
 
     def __str__(self):
         return self.title
+    
+class CarView(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    ip_adres = models.GenericIPAddressField() 

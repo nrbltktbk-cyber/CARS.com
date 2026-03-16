@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Car
+from .models import Car , CarView
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 
@@ -21,9 +21,14 @@ def car_list(request):
 
 def car_detail(request, car_id):
     car = get_object_or_404(Car, id=car_id)
+    
+    ip = request.META.get('REMOTE_ADDR')
+    
+    if not CarView.objects.filter(car=car, ip_adres=ip).exists():
+        CarView.objects.create(car=car, ip_adres=ip)    
 
-    car.views += 1
-    car.save()
+        car.views += 1
+        car.save()
 
     return render(request, 'car_detail.html', {'car': car})
 
