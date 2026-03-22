@@ -1,0 +1,35 @@
+<h1>Список фильмов</h1>
+
+<!-- 🔍 Поиск -->
+<form method="get">
+    <input type="text" name="q" placeholder="Поиск фильма..." value="{{ request.GET.q }}">
+    <button type="submit">Найти</button>
+</form>
+
+<!-- 🎯 Кнопки Добавить фильм -->
+{% if user.is_authenticated %}
+    <a href="{% url 'add_movie' %}">Добавить фильм</a>
+{% endif %}
+
+<hr>
+
+<!-- 📜 Список фильмов -->
+{% for movie in movies %}
+    <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+        <h2>{{ movie.title }}</h2>
+        <p>{{ movie.description|truncatechars:100 }}</p>
+        <p>Жанр: {{ movie.genre.name }}</p>
+        <p>Рейтинг: {{ movie.rating }}</p>
+
+        <!-- 🔹 Подробнее -->
+        <a href="{% url 'movie_detail' movie.id %}">Подробнее</a>
+
+        <!-- 🔹 Редактировать / Удалить (только авторизованные) -->
+        {% if user.is_authenticated %}
+            | <a href="{% url 'edit_movie' movie.id %}">Изменить</a>
+            | <a href="{% url 'delete_movie' movie.id %}">Удалить</a>
+        {% endif %}
+    </div>
+{% empty %}
+    <p>Фильмов пока нет.</p>
+{% endfor %}

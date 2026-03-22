@@ -1,0 +1,32 @@
+<h1>{{ movie.title }}</h1>
+<p>{{ movie.description }}</p>
+<p>Жанр: {{ movie.genre.name }}</p>
+<p>Рейтинг: {{ movie.rating }}</p>
+
+<hr>
+
+<h3>Комментарии</h3>
+{% for comment in movie.comments.all %}
+    <p><strong>{{ comment.user.username }}:</strong> {{ comment.text }}</p>
+{% empty %}
+    <p>Пока нет комментариев</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+<h4>Добавить комментарий</h4>
+<form method="post" action="{% url 'add_comment' movie.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Отправить</button>
+</form>
+{% endif %}
+
+<form method="get">
+    <select name="genre">
+        <option value="">Все жанры</option>
+        {% for g in genres %}
+            <option value="{{ g.name }}" {% if request.GET.genre == g.name %}selected{% endif %}>{{ g.name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Фильтровать</button>
+</form>

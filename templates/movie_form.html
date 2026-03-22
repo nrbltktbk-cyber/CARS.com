@@ -1,0 +1,9 @@
+<h1>{% if object %}Редактировать{% else %}Добавить{% endif %} фильм</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{% if object %}Сохранить{% else %}Добавить{% endif %}</button>
+</form>
+
+<a href="{% url 'movie_list' %}">Назад к списку фильмов</a>

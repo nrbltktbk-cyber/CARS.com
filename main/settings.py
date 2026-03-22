@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     'drivers',
     'vacancy',
     'captcha',
+    'CineBoard',
+    
     
 ]
 
